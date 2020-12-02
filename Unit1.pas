@@ -1,4 +1,4 @@
-unit Unit1;
+п»їunit Unit1;
 
 interface
 
@@ -46,7 +46,7 @@ var
 begin
   Excel := CreateoleObject('Excel.Application');
   try
-    OpenDialog1.Filter:='Файлы MS Excel|*.xls;*.xlsx|';
+    OpenDialog1.Filter:='Р¤Р°Р№Р»С‹ MS Excel|*.xls;*.xlsx|';
     if  not OpenDialog1.Execute then exit;
 
     Excel.Workbooks.Open(OpenDialog1.FileName, False);
@@ -60,12 +60,12 @@ begin
     PhoneRowStart := Excel.ActiveCell.Row+1;
     PhoneRowEnd := Excel.ActiveCell.SpecialCells(xlCellTypeLast).Row;
 
-    Excel.Cells[PhoneRowStart-1,PhoneColumn+1] := 'Клиент';
-    Excel.Cells[PhoneRowStart-1,PhoneColumn+2] := 'Заказ';
-    Excel.Cells[PhoneRowStart-1,PhoneColumn+3] := 'Склад';
-    Excel.Cells[PhoneRowStart-1,PhoneColumn+4] := 'Приемшик';
-    Excel.Cells[PhoneRowStart-1,PhoneColumn+5] := 'Сумма заказа';
-    Excel.Cells[PhoneRowStart-1,PhoneColumn+6] := 'Новый клиент';
+    Excel.Cells[PhoneRowStart-1,PhoneColumn+1] := 'РљР»РёРµРЅС‚';
+    Excel.Cells[PhoneRowStart-1,PhoneColumn+2] := 'Р—Р°РєР°Р·';
+    Excel.Cells[PhoneRowStart-1,PhoneColumn+3] := 'РЎРєР»Р°Рґ';
+    Excel.Cells[PhoneRowStart-1,PhoneColumn+4] := 'РџСЂРёРµРјС€РёРє';
+    Excel.Cells[PhoneRowStart-1,PhoneColumn+5] := 'РЎСѓРјРјР° Р·Р°РєР°Р·Р°';
+    Excel.Cells[PhoneRowStart-1,PhoneColumn+6] := 'РќРѕРІС‹Р№ РєР»РёРµРЅС‚';
 
 
     Try
@@ -87,7 +87,7 @@ begin
       Except
       on E:Exception do
         begin
-          ShowMessage('Произошла ошибка при подключении к БД.'+#13#10+E.ClassName+' '+E.Message+#13#10+'Обратитесь к тех. поддержке!');
+          ShowMessage('РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РїРѕРґРєР»СЋС‡РµРЅРёРё Рє Р‘Р”.'+#13#10+E.ClassName+' '+E.Message+#13#10+'РћР±СЂР°С‚РёС‚РµСЃСЊ Рє С‚РµС…. РїРѕРґРґРµСЂР¶РєРµ!');
           Exit;
         end;
       End;
@@ -108,7 +108,7 @@ begin
           if Phone[1]='7' then
           Delete(Phone,1,1);
           if Length(Phone)<6 then  continue;
-          query.SQL.Text := 'select c.fullname, d.doc_num, s.name, u.description, d.kredit, (case when (c.first_order_doc_id is null) then ''Новый'' when (c.first_order_doc_id=c.last_order_doc_id) then ''Новый'' else ''Старый'' end) as contragnew '+
+          query.SQL.Text := 'select c.fullname, d.doc_num, s.name, u.description, d.kredit, (case when (c.first_order_doc_id is null) then ''РќРѕРІС‹Р№'' when (c.first_order_doc_id=c.last_order_doc_id) then ''РќРѕРІС‹Р№'' else ''РЎС‚Р°СЂС‹Р№'' end) as contragnew '+
                             'from contragents c '+
                             'left join docs d on d.doc_id=c.last_order_doc_id '+
                             'left join docs_order dor on dor.doc_id=c.last_order_doc_id '+
