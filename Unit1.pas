@@ -74,9 +74,6 @@ begin
       Connection.DriverName := 'FB';
       with Connection.Params as TFDPhysFBConnectionDefParams do
         begin
-          //Protocol := ipTCPIP;
-          //Server := 'mail.apetta.ru';
-          //Port := 26508;
           Server := '192.168.0.50';
           Database := 'E:\12345\DB\ARM.fdb';
           UserName := 'sysdba';
